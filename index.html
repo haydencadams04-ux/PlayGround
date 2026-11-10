@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100f19">
+  <title>Gloamhold — Beneath the Ember</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="scene" aria-label="Pixel-art dungeon game"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <section id="title-screen" class="screen">
+      <div class="brand"><span class="brand-mark">✦</span><span>EMBERFALL <i>STUDIOS</i></span><span class="brand-line"></span><span class="brand-small">A DESCENT INTO THE GLOAM</span></div>
+      <div class="title-copy">
+        <p class="eyebrow"><span></span> THE OLD KINGDOM IS HOLLOW</p>
+        <h1>GLOAM<span>HOLD</span></h1>
+        <p class="subtitle">Beneath the Ember</p>
+        <p class="intro">The last lantern is yours. Find the relics<br>the dark has kept, and find your way home.</p>
+      </div>
+      <div class="creator-panel">
+        <div class="panel-heading"><div><p class="eyebrow">BEFORE YOU DESCEND</p><h2>Choose your wanderer</h2></div><div class="step">01 <span>/ 01</span></div></div>
+        <div class="creation-layout">
+          <div class="portrait-frame"><canvas id="portrait" width="96" height="120"></canvas><span class="portrait-label">YOUR WANDERER</span></div>
+          <div class="creation-controls">
+            <label class="field-label" for="hero-name">NAME</label>
+            <input id="hero-name" maxlength="14" value="Ash" autocomplete="off" spellcheck="false">
+            <p class="field-label class-label">PATH</p>
+            <div class="class-options">
+              <button class="class-card selected" data-class="Warden"><span class="class-icon">⚔</span><span><b>Warden</b><small>Steady &amp; resilient</small></span><span class="check">✓</span></button>
+              <button class="class-card" data-class="Ranger"><span class="class-icon bow">⌁</span><span><b>Ranger</b><small>Quick &amp; keen-eyed</small></span><span class="check">✓</span></button>
+              <button class="class-card" data-class="Arcanist"><span class="class-icon">✧</span><span><b>Arcanist</b><small>Bright &amp; uncanny</small></span><span class="check">✓</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer"><p><span class="keycap">WASD</span> MOVE <span class="keycap">SPACE</span> STRIKE <span class="keycap">SHIFT</span> DODGE</p><button id="begin-button" class="begin-button">ENTER THE GLOAM <span>→</span></button></div>
+      </div>
+      <div class="title-foot"><span>AN UNMAPPED PLACE, MADE A LITTLE DIFFERENT EACH TIME</span><span>© EMBERFALL 2025</span></div>
+    </section>
+
+    <section id="game-ui" class="hidden" aria-live="polite">
+      <header class="hud-top">
+        <div class="hero-status"><div class="avatar-mini" id="avatar-mini">A</div><div class="status-copy"><b id="hud-name">ASH</b><span id="hud-class">THE WARDEN · LV. 01</span></div></div>
+        <div class="health-block"><div class="health-label"><span>VITALITY</span><b id="health-text">100 / 100</b></div><div class="bar"><i id="health-fill"></i></div></div>
+        <div class="relic-counter"><span class="relic-gem">◆</span><span><b id="relic-count">0 / 3</b><small>EMBER RELICS</small></span></div>
+      </header>
+      <div class="hud-right"><div class="map-frame"><canvas id="minimap" width="100" height="100"></canvas><span>THE LOWER VAULT</span></div><button id="sound-button" class="sound-button" title="Toggle sound">♫ <span>SOUND ON</span></button></div>
+      <div id="toast" class="toast"></div>
+      <div class="combat-flash" id="combat-flash"></div>
+      <div class="hud-bottom"><div class="objective"><span class="objective-icon">◈</span><span><small>YOUR CHARGE</small><b id="objective-text">Seek the three ember relics.</b></span></div><div class="controls-hint"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> MOVE</span><span><kbd>SPACE</kbd> STRIKE</span><span><kbd>SHIFT</kbd> DODGE</span><span><kbd>M</kbd> MAP</span></div></div>
+      <div id="touch-controls" class="touch-controls"><div class="dpad"><button data-dir="up">▲</button><div><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div></div><button id="touch-attack" class="touch-action">✦<small>STRIKE</small></button><button id="touch-dodge" class="touch-action dodge">»<small>DODGE</small></button></div>
+      <div id="pause-overlay" class="modal hidden"><div class="modal-card"><p class="eyebrow">THE GLOAM WAITS</p><h2>PAUSED</h2><p>Your lantern burns low, but it still burns.</p><button id="resume-button" class="begin-button">RETURN TO THE VAULT <span>→</span></button><button id="restart-button" class="text-button">ABANDON THIS DESCENT</button></div></div>
+      <div id="end-overlay" class="modal hidden"><div class="modal-card"><p class="eyebrow" id="end-eyebrow">A LIGHT IN THE DARK</p><h2 id="end-title">THE VAULT REMEMBERS</h2><p id="end-copy">The old stones fall quiet.</p><button id="end-button" class="begin-button">DESCEND ONCE MORE <span>→</span></button></div></div>
+    </section>
+    <div id="start-hint" class="start-hint hidden"><span>✦</span> The vault is listening</div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
